@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.hmdp.utils.RedisConstants.SHOP_GEO_TYPE;
+
 @SpringBootTest
 class HmDianPingApplicationTests {
     @Resource
@@ -31,7 +33,7 @@ class HmDianPingApplicationTests {
         for (Map.Entry<Long, List<Shop>> entry : collect.entrySet()) {
             // 获取类型id
             Long typeId = entry.getKey();
-            String key = "shop:geo:" + typeId;
+            String key = SHOP_GEO_TYPE + typeId;
             // 获取同类型的店铺的集合
             List<Shop> value = entry.getValue();
             List<RedisGeoCommands.GeoLocation<String>> locations = new ArrayList<>(value.size());
